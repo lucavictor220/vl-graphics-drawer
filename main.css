@@ -1,0 +1,55 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#scene {
+  position: relative;
+}
+
+#vl-drop-down {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 0;
+  left: 5;
+}
+
+#vl-objects {
+  position: relative;
+  display: none;
+  border: 1px solid purple;
+  border-top: none;
+}
+
+#header {
+  padding: 7px 10px;
+  border: 1px solid purple;
+  background: purple;
+  color: white;
+}
+
+#myCanvas {
+  border: 1px dashed purple;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+li.object {
+  border-bottom: 1px solid grey;
+  padding: 5px 4px;
+}
+
+li.object:hover {
+  background: #efefef;
+  border-bottom: 1px solid purple;
+}
+
