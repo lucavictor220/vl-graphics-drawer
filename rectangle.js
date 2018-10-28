@@ -15,7 +15,6 @@ class Rectangle {
     let newY = y || this.y;
     this.x = newX;
     this.y = newY;
-    debugger
     this.ctx.beginPath();
     this.ctx.fillStyle = 'red';
     this.ctx.fillRect(newX, newY, this.width * this.scaleFactor, this.heigth * this.scaleFactor);

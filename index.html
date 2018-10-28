@@ -15,11 +15,11 @@
           Shapes
         </div>
         <div>
-          <ul id="vl-objects">
-            <li class="object">Rectangle</li>
-            <li class="object">Circle</li>
-            <li class="object">Star</li>
-            <li class="object">Triangle</li>
+          <ul id="vl-shape-list">
+            <li class="shape">Rectangle</li>
+            <li class="shape">Circle</li>
+            <li class="shape">Star</li>
+            <li class="shape">Triangle</li>
           </ul>
         </div>
       </div>
@@ -27,11 +27,11 @@
     </div>
     <hr>
     <form>
-      <label for="scale">Scale <span id="scale-v">1</span></label>
-      <input id="scale" type="range" min="1" max="30" value="1">
+      <label for="scale">Scale <span id="vl-scale-label">1</span></label>
+      <input id="scale" type="range" min="-20" max="20" value="0">
     </form>
     <div>
-        <span id="vl-selected"></span>
+        Selected shape: <span id="vl-selected"></span>
     </div>
     <button id="clear">Clear</button>
   </body>

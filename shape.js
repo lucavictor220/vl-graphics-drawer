@@ -7,9 +7,9 @@ class Shape {
 
   _createShape() {
     switch(this.name) {
-      case "Rectangle":
+      case "rectangle":
         return new Rectangle(this.ctx);
-      case "Circle":
+      case "circle":
         return new Circle(this.ctx);
       default:
         return new Rectangle(this.ctx);
