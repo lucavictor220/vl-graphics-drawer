@@ -1,22 +1,29 @@
 class Rectangle {
   constructor(ctx, width, height) {
     this.ctx = ctx;
-    this.width = width || 150;
-    this.heigth = height || 100;
+    this.width = width || 10;
+    this.height = height || 10;
     this.scaleFactor = 1;
   }
 
   scale(factor) {
-    this.scaleFactor = factor
-  }
-
-  draw(x, y) {
-    let newX = x || this.x;
-    let newY = y || this.y;
-    this.x = newX;
-    this.y = newY;
     this.ctx.beginPath();
     this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(newX, newY, this.width * this.scaleFactor, this.heigth * this.scaleFactor);
+    this.ctx.fillRect(newX, newY, this.width * factor, this.height * factor);
+  }
+
+  updateDimentions(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  draw(x, y, width, height) {
+    this.x = x || this.x;
+    this.y = y || this.y;
+    this.width = width || this.width;
+    this.height = height || this.height;
+    this.ctx.beginPath();
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }

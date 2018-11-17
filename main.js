@@ -16,6 +16,7 @@ class Scene {
     this.shapes = [];
     this.width = width;
     this.height = height;
+    this.isDragging = false;
   }
 
   init() {
@@ -29,15 +30,69 @@ class Scene {
     this.bindedHtml.canvas = document.querySelector("#myCanvas");
     this.ctx = this.bindedHtml.canvas.getContext("2d");
     
-    this.bindedHtml.canvas.addEventListener('click', (e) => this._onSceneClick(e));
+    // this.bindedHtml.canvas.addEventListener('click', (e) => this._onSceneClick(e));
+    this.bindedHtml.canvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
+    this.bindedHtml.canvas.addEventListener('mousemove', (e) => this._onMouseMove(e))
+    this.bindedHtml.canvas.addEventListener('mouseup', (e) => this._endDrawing(e));
   }
 
-  _onSceneClick(e) {
+  _onMouseDown(e) {
     let { x, y } = this._getMousePosition(e);
-    if (!this.selectedShape) return;
+    let selectedShape = this._getShapeOnCoordinates(x, y)
+    if (selectedShape) {
+      this.isDragging = true;
+      this._currentShape = selectedShape;
+    } else {
+      this._startDrawing(e);
+    }
+  }
+
+  _getShapeOnCoordinates(x, y) {
+    for (let i = 0; i < this.shapes.length; i++) {
+      if (this.shapes[i].coordinatesInShapeBoundaries(x, y)) {
+        return this.shapes[i];
+      }
+    };
+  }
+
+  _startDrawing(e) {
+    let { x, y } = this._getMousePosition(e);
+    this._startX = x;
+    this._startY = y;
     let shape = new Shape(this.ctx, this.selectedShape);
     this.shapes.push(shape);
-    shape.draw(x, y);
+    this._currentShape = shape;
+  }
+
+  _onMouseMove(e) {
+    if (!this._currentShape) return;
+    if (this.isDragging) {
+      this._changeLocation(e);
+    } else {
+      this._changeSize(e);
+    }
+  }
+
+  _changeLocation(e) {
+    if (!this.isDragging) return;
+    let { x, y } = this._getMousePosition(e);
+    this._currentShape.updateLocation(x, y)
+    this._updateCanvas();
+  }
+
+  _changeSize(e) {
+    let { x, y } = this._getMousePosition(e);
+    let newWidth = x - this._startX
+    let newHeight = y - this._startY
+    this._currentShape.x = this._startX;
+    this._currentShape.y = this._startY;
+    this._currentShape.updateDimentions(newWidth, newHeight);
+    this._updateCanvas();
+  }
+
+  _endDrawing() {
+    this._currentShape = null;
+    this.isDragging = false;
   }
 
   _initDropdown() {
@@ -81,12 +136,9 @@ class Scene {
 
   _updateCanvas() {
     this._clearCanvas();
-    for (let i = 0; i < this.shapes.length-1; i++) {
+    for (let i = 0; i < this.shapes.length; i++) {
       this.shapes[i].draw();
     };
-    let factor = 1 + this.scale / 20;
-    this.shapes[this.shapes.length-1].scale(factor);
-    this.shapes[this.shapes.length-1].draw();
   }
 
   _updateTextOfScale() {
