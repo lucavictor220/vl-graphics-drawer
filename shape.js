@@ -13,6 +13,14 @@ class Shape {
     this.shape.y = y;
   }
 
+  get x() {
+    return this.shape.x;
+  }
+
+  get y() {
+    return this.shape.y;
+  }
+
   _createShape() {
     switch(this.name) {
       case "rectangle":

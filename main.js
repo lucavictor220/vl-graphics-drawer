@@ -41,6 +41,8 @@ class Scene {
     let selectedShape = this._getShapeOnCoordinates(x, y)
     if (selectedShape) {
       this.isDragging = true;
+      this._deltaDragX = x - selectedShape.x;
+      this._deltaDragY = y - selectedShape.y;
       this._currentShape = selectedShape;
     } else {
       this._startDrawing(e);
@@ -76,7 +78,7 @@ class Scene {
   _changeLocation(e) {
     if (!this.isDragging) return;
     let { x, y } = this._getMousePosition(e);
-    this._currentShape.updateLocation(x, y)
+    this._currentShape.updateLocation((x - this._deltaDragX), (y - this._deltaDragY))
     this._updateCanvas();
   }
 
@@ -93,6 +95,8 @@ class Scene {
   _endDrawing() {
     this._currentShape = null;
     this.isDragging = false;
+    this._deltaDragX = null;
+    this._deltaDragY = null;
   }
 
   _initDropdown() {
