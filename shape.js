@@ -1,10 +1,11 @@
-class Shape {
+class Shape extends Observer {
   constructor(ctx, shape) {
+    super();
     this.name = shape;
     this.ctx = ctx;
     this.shape = this._createShape();
+    this.id = +Date.now();
   }
-
   set x(x) {
     this.shape.x = x;
   }
@@ -31,6 +32,10 @@ class Shape {
         return new Rectangle(this.ctx);
     }
   }
+  
+  update(model) {
+    this.shape.selected = this.id === model.selectedShape.id;
+  }
 
   scale(factor) {
     this.shape.scale(factor);
@@ -39,17 +44,17 @@ class Shape {
   coordinatesInShapeBoundaries(x, y) {
     switch(this.name) {
       case "rectangle":
-        if (this.shape.x < x && x < this.shape.x + this.shape.width && this.shape.y < y && y < this.shape.y + this.shape.height) {
+        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && this.shape.y <= y && y <= this.shape.y + this.shape.height) {
           return true;
         }
         return false;
       case "circle":
-        if (this.shape.x < x && x < this.shape.x + this.shape.radius && this.shape.y < y && y < this.shape.y + this.shape.radius) {
+        if (this.shape.x <= x && x <= this.shape.x + this.shape.radius && this.shape.y <= y && y <= this.shape.y + this.shape.radius) {
           return true;
         }
       return false;
       default:
-        if (this.shape.x < x && x < this.shape.x + this.shape.width && this.shape.y < y && y < this.shape.y + this.shape.height) {
+        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && this.shape.y <= y && y <= this.shape.y + this.shape.height) {
           return true;
         }
         return false;
