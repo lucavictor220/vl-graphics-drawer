@@ -6,6 +6,7 @@ class Shape extends Observer {
     this.shape = this._createShape();
     this.id = +Date.now();
   }
+  
   set x(x) {
     this.shape.x = x;
   }

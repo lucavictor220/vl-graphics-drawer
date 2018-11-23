@@ -71,6 +71,11 @@ class Scene {
   }
 
   _onMouseUp(e) {
+    let { x, y } = this._getMousePosition(e);
+    if (Math.abs(this._startX - x) < 3 && Math.abs(this._startY - y) < 3) {
+      this.shapes.pop();
+      this._updateCanvas();
+    }
     this._currentShape = null;
     this.isDragging = false;
     this.resize = false;
