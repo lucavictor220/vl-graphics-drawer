@@ -6,7 +6,7 @@ class Shape extends Observer {
     this.shape = this._createShape();
     this.id = +Date.now();
   }
-  
+
   set x(x) {
     this.shape.x = x;
   }
@@ -58,7 +58,7 @@ class Shape extends Observer {
         }
         return false;
       case "circle":
-        if (this.shape.x <= x && x <= this.shape.x + this.shape.radius && this.shape.y <= y && y <= this.shape.y + this.shape.radius) {
+        if (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) + Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1) {
           return true;
         }
       return false;

@@ -24,5 +24,8 @@ class Circle {
     this.ctx.fillStyle = "green";
     this.ctx.fill();
     this.ctx.closePath();
+    if (this.selected) {
+      this.select();
+    }
   }
 }

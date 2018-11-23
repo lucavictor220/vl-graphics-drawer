@@ -32,5 +32,8 @@ class Rectangle {
     this.ctx.fillStyle = 'red';
     this.ctx.fill();
     this.ctx.closePath();
+    if (this.selected) {
+      this.select();
+    }
   }
 }

@@ -18,7 +18,6 @@ class Scene {
     this.height = height;
     this.isDragging = false;
     this.observer = new Subject();
-    this.clicks = 0;
   }
 
   init() {
@@ -32,20 +31,22 @@ class Scene {
     this.bindedHtml.sceneCanvas = document.querySelector("#myCanvas");
     this.ctx = this.bindedHtml.sceneCanvas.getContext("2d");
     
-    this.bindedHtml.sceneCanvas.addEventListener('dblclick', (e) => this._onSceneClick(e));
+    this.bindedHtml.sceneCanvas.addEventListener('dblclick', (e) => this._onDoubleClick(e));
     this.bindedHtml.sceneCanvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
     this.bindedHtml.sceneCanvas.addEventListener('mousemove', (e) => this._onMouseMove(e))
     this.bindedHtml.sceneCanvas.addEventListener('mouseup', (e) => this._onMouseUp(e));
   }
 
-  _onSceneClick(e) {
+  _onDoubleClick(e) {
     let { x, y } = this._getMousePosition(e);
     let shape = this._getShapeOnCoordinates(x, y);
-    if (shape) {
-      this.observer.select(shape);
-      this._updateCanvas();
-    }
+    this._selectShape(shape);
+  }
 
+  _selectShape(shape) {
+    if (!shape) return;
+    this.observer.select(shape);
+    this._updateCanvas();
   }
 
   _onMouseDown(e) {
