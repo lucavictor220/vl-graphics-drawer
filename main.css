@@ -7,8 +7,15 @@ html, body {
   box-sizing: border-box;
 }
 
-#scene {
+.container {
   position: relative;
+  width: 100%;
+}
+
+#scene {
+  width: 80%;
+  height: 600px;
+  margin: auto;
 }
 
 #vl-drop-down {
@@ -33,8 +40,20 @@ html, body {
   color: white;
 }
 
+header {
+  display: block;
+  padding: 20px;
+}
+
+header h1 {
+  font: 300 24px sans-serif;
+  color: purple;
+}
+
 #myCanvas {
-  border: 1px dashed purple;
+  width: 100%;
+  height: 100%;
+  border: 1px solid purple;
 }
 
 ul {

@@ -168,6 +168,7 @@ class Scene {
 
   _getMousePosition(event) {
     let rect = this.bindedHtml.sceneCanvas.getBoundingClientRect();
+    debugger
     return {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top
@@ -190,6 +191,17 @@ class Scene {
   }
 }
 
-const myScene = new Scene(1400, 600);
+let sceneContainer = document.querySelector('#scene');
+const canvas = document.querySelector('#myCanvas');
+canvas.width = sceneContainer.offsetWidth;
+canvas.height = sceneContainer.offsetHeight;
+const myScene = new Scene(sceneContainer.offsetWidth, sceneContainer.offsetHeight);
 myScene.init();
+
+
+window.addEventListener('resize', () => {
+  canvas.width = sceneContainer.offsetWidth;
+  canvas.height = sceneContainer.offsetHeight;;
+  myScene._updateCanvas();
+});
 
