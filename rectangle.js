@@ -12,8 +12,10 @@ class Rectangle {
   }
 
   updateDimentions(x, y) {
-    this.width = x - this.x;
-    this.height = y - this.y;
+    this.width = Math.abs(x - this.x);
+    this.height = Math.abs(y - this.y);
+    this.cx = (x - this.x) < 0 ? this.x - this.width/2 : this.x + this.width/2;
+    this.cy = (y - this.y) < 0 ? this.y - this.height/2 : this.y + this.height/2;
   }
 
   select() {
@@ -24,7 +26,9 @@ class Rectangle {
 
   draw() {
     this.ctx.beginPath();
-    this.ctx.rect(this.x, this.y, this.width, this.height);
+    let x = this.cx - this.width/2;
+    let y = this.cy - this.height/2;
+    this.ctx.rect(x, y, this.width, this.height);
     this.ctx.fillStyle = 'red';
     this.ctx.fill();
     this.ctx.closePath();

@@ -29,13 +29,13 @@ class Scene {
   }
 
   _initCanvas() {
-    this.bindedHtml.canvas = document.querySelector("#myCanvas");
-    this.ctx = this.bindedHtml.canvas.getContext("2d");
+    this.bindedHtml.sceneCanvas = document.querySelector("#myCanvas");
+    this.ctx = this.bindedHtml.sceneCanvas.getContext("2d");
     
-    this.bindedHtml.canvas.addEventListener('dblclick', (e) => this._onSceneClick(e));
-    this.bindedHtml.canvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
-    this.bindedHtml.canvas.addEventListener('mousemove', (e) => this._onMouseMove(e))
-    this.bindedHtml.canvas.addEventListener('mouseup', (e) => this._onMouseUp(e));
+    this.bindedHtml.sceneCanvas.addEventListener('dblclick', (e) => this._onSceneClick(e));
+    this.bindedHtml.sceneCanvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
+    this.bindedHtml.sceneCanvas.addEventListener('mousemove', (e) => this._onMouseMove(e))
+    this.bindedHtml.sceneCanvas.addEventListener('mouseup', (e) => this._onMouseUp(e));
   }
 
   _onSceneClick(e) {
@@ -56,7 +56,6 @@ class Scene {
       this._deltaDragX = x - selectedShape.x;
       this._deltaDragY = y - selectedShape.y;
       this._currentShape = selectedShape;
-      if (this.clicks === 2) {}
     } else {
       this._startDrawing(e);
     }
@@ -167,7 +166,7 @@ class Scene {
   }
 
   _getMousePosition(event) {
-    let rect = this.bindedHtml.canvas.getBoundingClientRect();
+    let rect = this.bindedHtml.sceneCanvas.getBoundingClientRect();
     return {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top
