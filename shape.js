@@ -22,6 +22,14 @@ class Shape extends Observer {
     return this.shape.y;
   }
 
+  isCircle() {
+    return this.name === 'circle';
+  }
+
+  isRect() {
+    return this.name === 'rectangle';
+  }
+
   _createShape() {
     switch(this.name) {
       case "rectangle":
@@ -63,11 +71,7 @@ class Shape extends Observer {
   }
 
   updateDimentions(x, y) {
-    if (arguments.length === 1) {
-      this.shape.updateDimentions(x);
-    } else if (arguments.length === 2) {
-      this.shape.updateDimentions(x, y)
-    }
+    this.shape.updateDimentions(x, y);
   }
 
   updateLocation(x, y) {

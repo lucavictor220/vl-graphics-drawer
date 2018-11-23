@@ -13,7 +13,6 @@ class Subject {
 
   addObserver(object) {
     this.observers.push(object);
-    debugger
     console.log('Added new observer with id: ' + object.id);
   }
 

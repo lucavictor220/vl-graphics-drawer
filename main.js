@@ -63,10 +63,9 @@ class Scene {
   }
 
   _onMouseMove(e) {
-    if (!this._currentShape) return;
     if (this.isDragging) {
       this._changeLocation(e);
-    } else {
+    } else if (this.resize) {
       this._changeSize(e);
     }
   }
@@ -74,6 +73,7 @@ class Scene {
   _onMouseUp(e) {
     this._currentShape = null;
     this.isDragging = false;
+    this.resize = false;
     this._deltaDragX = null;
     this._deltaDragY = null;
   }
@@ -90,25 +90,24 @@ class Scene {
     let { x, y } = this._getMousePosition(e);
     this._startX = x;
     this._startY = y;
-    this._currentShape = new Shape(this.ctx, this.selectedShape);
-    this.shapes.push(this._currentShape);
-    this.observer.addObserver(this._currentShape);
+    let newShape = new Shape(this.ctx, this.selectedShape);
+    newShape.x = x;
+    newShape.y = y;
+    this.shapes.push(newShape);
+    this.observer.addObserver(newShape);
+    this.resize = true;
   }
 
   _changeLocation(e) {
     if (!this.isDragging) return;
     let { x, y } = this._getMousePosition(e);
-    this._currentShape.updateLocation(Math.abs(x - this._deltaDragX), Math.abs(y - this._deltaDragY));
+    this.shapes[this.shapes.length-1].updateLocation(Math.abs(x - this._deltaDragX), Math.abs(y - this._deltaDragY));
     this._updateCanvas();
   }
 
   _changeSize(e) {
     let { x, y } = this._getMousePosition(e);
-    let newWidth = Math.abs(x - this._startX)
-    let newHeight = Math.abs(y - this._startY)
-    this._currentShape.x = x > this._startX ?  this._startX : x;
-    this._currentShape.y = y > this._startY ? this._startY : y;
-    this._currentShape.updateDimentions(newWidth, newHeight);
+    this.shapes[this.shapes.length-1].updateDimentions(x, y);
     this._updateCanvas();
   }
 
