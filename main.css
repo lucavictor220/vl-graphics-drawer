@@ -72,3 +72,24 @@ li.shape:hover {
   border-bottom: 1px solid purple;
 }
 
+footer {
+  display: block;
+  width: 100%;
+  padding: 10px 25px;
+}
+
+.button {
+  width: 130px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid purple;
+  padding: 10px 15px;
+  color: purple;
+  font: 400 14px sans-serif;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: purple;
+  color: white;
+}

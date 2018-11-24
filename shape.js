@@ -15,12 +15,28 @@ class Shape extends Observer {
     this.shape.y = y;
   }
 
+  set cx(cx) {
+    this.shape.cx = cx;
+  }
+
+  set cy(cy) {
+    this.shape.cy = cy;
+  }
+
   get x() {
     return this.shape.x;
   }
 
   get y() {
     return this.shape.y;
+  }
+
+  get cx() {
+    return this.shape.cx;
+  }
+
+  get cy() {
+    return this.shape.cy;
   }
 
   isCircle() {
@@ -53,17 +69,20 @@ class Shape extends Observer {
   coordinatesInShapeBoundaries(x, y) {
     switch(this.name) {
       case "rectangle":
-        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && this.shape.y <= y && y <= this.shape.y + this.shape.height) {
+        if (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
+            this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y) {
           return true;
         }
         return false;
       case "circle":
-        if (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) + Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1) {
+        if (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) +
+            Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1) {
           return true;
         }
       return false;
       default:
-        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && this.shape.y <= y && y <= this.shape.y + this.shape.height) {
+        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && 
+            this.shape.y <= y && y <= this.shape.y + this.shape.height) {
           return true;
         }
         return false;
@@ -76,8 +95,9 @@ class Shape extends Observer {
   }
 
   updateLocation(x, y) {
-    this.shape.x = x;
-    this.shape.y = y;
+    this.shape.cx = x;
+    this.shape.cy = y;
+    debugger
   }
 
   draw(x, y, width, height) {
