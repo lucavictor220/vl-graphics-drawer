@@ -53,6 +53,8 @@ class Shape extends Observer {
         return new Rectangle(this.ctx);
       case "circle":
         return new Circle(this.ctx);
+      case "line":
+        return new Line(this.ctx);
       default:
         return new Rectangle(this.ctx);
     }
@@ -69,23 +71,16 @@ class Shape extends Observer {
   coordinatesInShapeBoundaries(x, y) {
     switch(this.name) {
       case "rectangle":
-        if (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
-            this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y) {
-          return true;
-        }
-        return false;
+        return (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
+            this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y)
       case "circle":
-        if (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) +
-            Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1) {
-          return true;
-        }
-      return false;
+        return (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) +
+            Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1)
+      case "line":
+        return isInsideLine(this.shape.x, this.shape.y, this.shape.x1, this.shape.y1, x, y)
       default:
-        if (this.shape.x <= x && x <= this.shape.x + this.shape.width && 
-            this.shape.y <= y && y <= this.shape.y + this.shape.height) {
-          return true;
-        }
-        return false;
+        return (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
+          this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y)
         
     }
   }
@@ -97,7 +92,6 @@ class Shape extends Observer {
   updateLocation(x, y) {
     this.shape.cx = x;
     this.shape.cy = y;
-    debugger
   }
 
   draw(x, y, width, height) {

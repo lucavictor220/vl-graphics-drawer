@@ -98,7 +98,8 @@ class Scene {
   _changeLocation(e) {
     if (!this.isDragging) return;
     let { x, y } = this._getMousePosition(e);
-    this.shapes.find(shape => shape.id === this._currentShape.id).updateLocation(Math.abs(x - this._deltaDragX), Math.abs(y - this._deltaDragY));
+    this.shapes.find(shape => shape.id === this._currentShape.id)
+      .updateLocation(Math.abs(x - this._deltaDragX), Math.abs(y - this._deltaDragY));
     this.updateCanvas();
   }
 
