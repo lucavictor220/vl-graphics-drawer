@@ -1,20 +1,38 @@
-class Line {
+class Line extends CoordinatesInBounderies {
   constructor(ctx) {
+    super();
     this.ctx = ctx;
     this.scaleFactor = 1;
     this.selected = false;
     this.thickness = 2;
   }
 
+  updateLocation(x, y) {
+    this.cx = x;
+    this.cy = y;
+    let deltaX = (this.x1 - this.x)/2;
+    let deltaY = (this.y1 - this.y)/2;
+    this.x = this.cx - deltaX;
+    this.y = this.cy - deltaY;
+    this.x1 = this.cx + deltaX;
+    this.y1 = this.cy + deltaY;
+  }
+
   updateDimentions(x1, y1) {
     this.x1 = x1;
     this.y1 = y1;
+    this.cx = this.x + (this.x1 - this.x)/2;
+    this.cy = this.y + (this.y1 - this.y)/2;
   }
 
   select() {
     this.ctx.lineWidth = this.thickness;
     this.ctx.strokeStyle = "blue";
     this.ctx.stroke();
+  }
+
+  coordinatesIsInShapeBounderies(x, y) {
+    return isInsideLine(this.x, this.y, this.x1, this.y1, x, y);
   }
 
   draw() {

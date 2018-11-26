@@ -1,8 +1,14 @@
-class Circle {
+class Circle extends CoordinatesInBounderies {
   constructor(ctx) {
+    super();
     this.ctx = ctx;
     this.scaleFactor = 1;
     this.selected = false;
+  }
+
+  updateLocation(x, y) {
+    this.cx = x;
+    this.cy = y;
   }
 
   updateDimentions(x, y) {
@@ -16,6 +22,11 @@ class Circle {
     this.ctx.lineWidth = 2;
     this.ctx.strokeStyle = "blue";
     this.ctx.stroke();
+  }
+
+  coordinatesIsInShapeBounderies(x, y) {
+    return (Math.pow((x - this.cx), 2) / Math.pow(this.radiusX, 2) +
+        Math.pow((y - this.cy), 2) / Math.pow(this.radiusY, 2) <= 1);
   }
 
   draw() {

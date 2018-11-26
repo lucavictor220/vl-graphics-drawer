@@ -46,10 +46,12 @@ class Scene {
     let selectedShape = this._getShapeOnCoordinates(x, y);
     if (selectedShape) {
       this.isDragging = true;
+      this.drawing = false;
       this._deltaDragX = x - selectedShape.cx;
       this._deltaDragY = y - selectedShape.cy;
       this._currentShape = selectedShape;
     } else {
+      this.drawing = true;
       this._startDrawing(e);
     }
   }
@@ -57,22 +59,24 @@ class Scene {
   _onMouseMove(e) {
     if (this.isDragging) {
       this._changeLocation(e);
-    } else if (this.resize) {
+    } else if (this.drawing && this._currentShape) {
       this._changeSize(e);
+      this.resize = true;
     }
   }
 
   _onMouseUp(e) {
-    let { x, y } = this._getMousePosition(e);
-    if (Math.abs(this._startX - x) < 3 && Math.abs(this._startY - y) < 3) {
-      this.shapes.pop();
-      this.updateCanvas();
+    if (this.drawing && this.resize) {
+      this.shapes.push(this._currentShape);
+      this.observer.addObserver(this._currentShape);
     }
     this._currentShape = null;
     this.isDragging = false;
-    this.resize = false;
     this._deltaDragX = null;
     this._deltaDragY = null;
+    this.resize = false;
+    this.drawing = false;
+    this.updateCanvas();
   }
 
   _getShapeOnCoordinates(x, y) {
@@ -87,12 +91,9 @@ class Scene {
     let { x, y } = this._getMousePosition(e);
     this._startX = x;
     this._startY = y;
-    let newShape = new Shape(this.ctx, this.selectedShape);
-    newShape.x = x;
-    newShape.y = y;
-    this.shapes.push(newShape);
-    this.observer.addObserver(newShape);
-    this.resize = true;
+    this._currentShape = new Shape(this.ctx, this.selectedShape);
+    this._currentShape.x = x;
+    this._currentShape.y = y;
   }
 
   _changeLocation(e) {
@@ -105,7 +106,7 @@ class Scene {
 
   _changeSize(e) {
     let { x, y } = this._getMousePosition(e);
-    this.shapes[this.shapes.length-1].updateDimentions(x, y);
+    this._currentShape.updateDimentions(x, y);
     this.updateCanvas();
   }
 
@@ -119,6 +120,7 @@ class Scene {
     for (let i = 0; i < this.shapes.length; i++) {
       this.shapes[i].draw();
     };
+    if (this.drawing && this._currentShape) this._currentShape.draw();
   }
 
   _getMousePosition(event) {

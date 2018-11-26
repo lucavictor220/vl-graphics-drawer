@@ -1,14 +1,14 @@
-class Rectangle {
+class Rectangle extends CoordinatesInBounderies {
   constructor(ctx) {
+    super();
     this.ctx = ctx;
     this.scaleFactor = 1;
     this.selected = false;
   }
 
-  scale(factor) {
-    this.ctx.beginPath();
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(newX, newY, this.width * factor, this.height * factor);
+  updateLocation(x, y) {
+    this.cx = x;
+    this.cy = y;
   }
 
   updateDimentions(x, y) {
@@ -16,6 +16,11 @@ class Rectangle {
     this.height = Math.abs(y - this.y);
     this.cx = (x - this.x) < 0 ? this.x - this.width/2 : this.x + this.width/2;
     this.cy = (y - this.y) < 0 ? this.y - this.height/2 : this.y + this.height/2;
+  }
+
+  coordinatesIsInShapeBounderies(x, y) {
+    return (this.cx - this.width/2 <= x && this.cx + this.width/2 >= x && 
+      this.cy - this.height/2 <= y && this.cy + this.height/2 >= y);
   }
 
   select() {

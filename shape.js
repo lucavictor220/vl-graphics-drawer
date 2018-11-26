@@ -47,6 +47,10 @@ class Shape extends Observer {
     return this.name === 'rectangle';
   }
 
+  isSelected() {
+    return this.shape.selected;
+  }
+
   _createShape() {
     switch(this.name) {
       case "rectangle":
@@ -64,25 +68,8 @@ class Shape extends Observer {
     this.shape.selected = this.id === model.selectedShape.id;
   }
 
-  scale(factor) {
-    this.shape.scale(factor);
-  }
-
   coordinatesInShapeBoundaries(x, y) {
-    switch(this.name) {
-      case "rectangle":
-        return (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
-            this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y)
-      case "circle":
-        return (Math.pow((x - this.shape.cx), 2) / Math.pow(this.shape.radiusX, 2) +
-            Math.pow((y - this.shape.cy), 2) / Math.pow(this.shape.radiusY, 2) <= 1)
-      case "line":
-        return isInsideLine(this.shape.x, this.shape.y, this.shape.x1, this.shape.y1, x, y)
-      default:
-        return (this.shape.cx - this.shape.width/2 <= x && this.shape.cx + this.shape.width/2 >= x && 
-          this.shape.cy - this.shape.height/2 <= y && this.shape.cy + this.shape.height/2 >= y)
-        
-    }
+    return this.shape.coordinatesIsInShapeBounderies(x, y);
   }
 
   updateDimentions(x, y) {
@@ -90,8 +77,7 @@ class Shape extends Observer {
   }
 
   updateLocation(x, y) {
-    this.shape.cx = x;
-    this.shape.cy = y;
+    this.shape.updateLocation(x, y);
   }
 
   draw(x, y, width, height) {
