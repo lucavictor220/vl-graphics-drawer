@@ -1,9 +1,7 @@
 class CoordinatesInBounderies {
-  constructor(shape) {
-    this.shape = shape;
-  }
+  constructor() {}
 
-  coordinatesIsInShapeBounderies(x, y) {
+  coordinatesIsInShapeBounderies() {
     throw new Error('Not implimented coordinatesIsInShapeBounderies method');
   }
 }
