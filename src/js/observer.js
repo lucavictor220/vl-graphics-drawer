@@ -1,4 +1,0 @@
-class Observer {
-  constructor() {}
-  update() {}
-}

@@ -4,6 +4,7 @@ class Circle extends CoordinatesInBounderies {
     this.ctx = ctx;
     this.scaleFactor = 1;
     this.selected = false;
+    this.highlighted = false;
   }
 
   updateLocation(x, y) {
@@ -19,8 +20,14 @@ class Circle extends CoordinatesInBounderies {
   }
 
   select() {
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = "#1c6def";
+    this.ctx.stroke();
+  }
+
+  highlight() {
     this.ctx.lineWidth = 2;
-    this.ctx.strokeStyle = "blue";
+    this.ctx.strokeStyle = "#3681f9";
     this.ctx.stroke();
   }
 
@@ -37,6 +44,9 @@ class Circle extends CoordinatesInBounderies {
     this.ctx.closePath();
     if (this.selected) {
       this.select();
+    }
+    if (this.highlighted) {
+      this.highlight();
     }
   }
 }

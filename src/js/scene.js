@@ -16,7 +16,9 @@ class Scene {
     this.width = width;
     this.height = height;
     this.isDragging = false;
-    this.observer = new Subject();
+    this.highlightedShape = null;
+    this.selectionManager = new SelectionManager();
+    this.hoverManager = new HoverManager();
   }
 
   init() {
@@ -37,7 +39,19 @@ class Scene {
 
   _selectShape(shape) {
     if (!shape) return;
-    this.observer.select(shape);
+    this.selectionManager.select(shape);
+    this.updateCanvas();
+  }
+
+  _highlightShape(shape) {
+    if (this.highlightedShape && this.highlightedShape.id === shape.id) return;
+    this.hoverManager.highlight(shape);
+    this.updateCanvas();
+  }
+
+  _removeHighlight() {
+    if (!this.highlightedShape) return;
+    this.hoverManager.unhighlightAll();
     this.updateCanvas();
   }
 
@@ -57,18 +71,27 @@ class Scene {
   }
 
   _onMouseMove(e) {
+    let { x, y } = this._getMousePosition(e);
+    let selectedShape = this._getShapeOnCoordinates(x, y);
     if (this.isDragging) {
       this._changeLocation(e);
     } else if (this.drawing && this._currentShape) {
       this._changeSize(e);
       this.resize = true;
+    } else if (selectedShape) {
+      this._highlightShape(selectedShape);
+      this.highlightedShape = selectedShape;
+    } else if (!selectedShape) {
+      this._removeHighlight();
+      this.highlightedShape = null;
     }
   }
 
   _onMouseUp(e) {
     if (this.drawing && this.resize) {
       this.shapes.push(this._currentShape);
-      this.observer.addObserver(this._currentShape);
+      this.selectionManager.addObserver(this._currentShape);
+      this.hoverManager.addObserver(this._currentShape);
     }
     this._currentShape = null;
     this.isDragging = false;

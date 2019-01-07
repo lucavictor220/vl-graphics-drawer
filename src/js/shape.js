@@ -1,4 +1,4 @@
-class Shape extends Observer {
+class Shape extends ShapeObserver {
   constructor(ctx, shape) {
     super();
     this.name = shape;
@@ -21,6 +21,10 @@ class Shape extends Observer {
 
   set cy(cy) {
     this.shape.cy = cy;
+  }
+
+  set highlighted(value) {
+    this.shape.highlighted = value;
   }
 
   get x() {
@@ -51,6 +55,7 @@ class Shape extends Observer {
     return this.shape.selected;
   }
 
+
   _createShape() {
     switch(this.name) {
       case "rectangle":
@@ -64,8 +69,12 @@ class Shape extends Observer {
     }
   }
   
-  update(model) {
+  select(model) {
     this.shape.selected = this.id === model.selectedShape.id;
+  }
+
+  highlight(model) {
+    this.shape.highlighted = this.id === model.highlightedShape.id;
   }
 
   coordinatesInShapeBoundaries(x, y) {

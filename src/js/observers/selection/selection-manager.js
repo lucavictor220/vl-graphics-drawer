@@ -1,4 +1,4 @@
-class Subject {
+class SelectionManager {
   constructor() {
     this.observers = [];
     this.selectedShape = {};
@@ -17,9 +17,9 @@ class Subject {
   }
 
   notifyObservers() {
-    console.log('Notify');
+    console.log('Notify Selection');
     for (let observer of this.observers) {
-      observer.update(this);
+      observer.select(this);
     }
   }
 }
