@@ -20,7 +20,7 @@ class Circle extends CoordinatesInBounderies {
   }
 
   select() {
-    this.ctx.lineWidth = 1;
+    this.ctx.lineWidth = 4;
     this.ctx.strokeStyle = "#1c6def";
     this.ctx.stroke();
   }
@@ -45,7 +45,7 @@ class Circle extends CoordinatesInBounderies {
     if (this.selected) {
       this.select();
     }
-    if (this.highlighted) {
+    if (!this.selected && this.highlighted) {
       this.highlight();
     }
   }

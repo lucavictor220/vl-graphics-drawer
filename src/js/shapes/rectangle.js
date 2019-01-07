@@ -47,7 +47,7 @@ class Rectangle extends CoordinatesInBounderies {
     if (this.selected) {
       this.select();
     }
-    if (this.highlighted) {
+    if (!this.selected && this.highlighted) {
       this.highlight();
     }
   }

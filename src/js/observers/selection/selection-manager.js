@@ -11,6 +11,11 @@ class SelectionManager {
     this.notifyObservers();
   }
 
+  unselectAll() {
+    console.log('UnselectAll shapes')
+    this.observers.forEach(observer => observer.shape.selected = false);
+  }
+
   addObserver(object) {
     this.observers.push(object);
     console.log('Added new observer with id: ' + object.id);

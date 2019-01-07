@@ -25,22 +25,30 @@ class Scene {
     this.bindedHtml.sceneCanvas = document.querySelector("#myCanvas");
     this.ctx = this.bindedHtml.sceneCanvas.getContext("2d");
     
-    this.bindedHtml.sceneCanvas.addEventListener('dblclick', (e) => this._onDoubleClick(e));
     this.bindedHtml.sceneCanvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
     this.bindedHtml.sceneCanvas.addEventListener('mousemove', (e) => this._onMouseMove(e))
     this.bindedHtml.sceneCanvas.addEventListener('mouseup', (e) => this._onMouseUp(e));
+    this.bindedHtml.sceneCanvas.addEventListener('click', (e) => this._onClick(e));
   }
 
-  _onDoubleClick(e) {
+  _onClick(e) {
     let { x, y } = this._getMousePosition(e);
     let shape = this._getShapeOnCoordinates(x, y);
-    this._selectShape(shape);
+    if (shape) {
+      this._selectShape(shape);
+    } else {
+      this._unselectAll();
+    }
   }
 
   _selectShape(shape) {
     if (!shape) return;
     this.selectionManager.select(shape);
     this.updateCanvas();
+  }
+
+  _unselectAll() {
+    
   }
 
   _highlightShape(shape) {

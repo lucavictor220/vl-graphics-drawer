@@ -27,6 +27,10 @@ class Shape extends ShapeObserver {
     this.shape.highlighted = value;
   }
 
+  set selected(value) {
+    this.shape.selected = value;
+  }
+
   get x() {
     return this.shape.x;
   }
