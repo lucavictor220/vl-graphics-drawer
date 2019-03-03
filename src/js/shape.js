@@ -47,18 +47,9 @@ class Shape extends ShapeObserver {
     return this.shape.cy;
   }
 
-  isCircle() {
-    return this.name === 'circle';
-  }
-
-  isRect() {
-    return this.name === 'rectangle';
-  }
-
   isSelected() {
     return this.shape.selected;
   }
-
 
   _createShape() {
     switch(this.name) {
@@ -93,7 +84,7 @@ class Shape extends ShapeObserver {
     this.shape.updateLocation(x, y);
   }
 
-  draw(x, y, width, height) {
-    this.shape.draw(x, y, width, height);
+  draw() {
+    this.shape.draw();
   }
 }

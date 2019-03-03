@@ -1,12 +1,6 @@
 class Scene {
   constructor(width, height) {
     this.bindedHtml = {
-      scaleInput: null,
-      scaleValue: null,
-      dropdown: null,
-      dropdownLabel: null,
-      currentShapeText: null,
-      clearButton: null,
       sceneCanvas: null,
     }
     this.scale = 1;
@@ -48,7 +42,11 @@ class Scene {
   }
 
   _unselectAll() {
-    
+    this.shapes.forEach(shape => {
+      shape.selected = false;
+      shape.highlighted = false;
+    });
+    this.updateCanvas();
   }
 
   _highlightShape(shape) {

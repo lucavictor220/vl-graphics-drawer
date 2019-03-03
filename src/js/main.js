@@ -7,6 +7,7 @@ const canvas = document.querySelector('#myCanvas');
 canvas.width = sceneContainer.offsetWidth;
 canvas.height = sceneContainer.offsetHeight;
 const myScene = new Scene(sceneContainer.offsetWidth, sceneContainer.offsetHeight);
+
 myScene.init();
 
 let dropdownOpened = false;
@@ -34,13 +35,18 @@ const selectShape = (e) => {
 }
 
 const toggleDropdown = () => {
-  if (dropdownOpened) {
-    dropdownList.style.display = "none";
-    dropdownOpened = false;
-  } else {
-    dropdownList.style.display = "block";
-    dropdownOpened = true;
-  }
+  if (dropdownOpened) openDropdown() 
+  else closeDropdown()
+}
+
+const openDropdown = () => {
+  dropdownList.style.display = "none";
+  dropdownOpened = false;
+}
+
+const closeDropdown = () => {
+  dropdownList.style.display = "block";
+  dropdownOpened = true;
 }
 
 window.addEventListener('resize', resize);

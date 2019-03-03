@@ -37,9 +37,24 @@ class Line extends CoordinatesInBounderies {
     this.ctx.strokeStyle = "#3681f9";
     this.ctx.stroke();
   }
-
+  
   coordinatesIsInShapeBounderies(x, y) {
     return isInsideLine(this.x, this.y, this.x1, this.y1, x, y);
+  }
+
+  drawResizeBorder() {
+    this.drawResizeRect(this.x, this.y);
+    this.drawResizeRect(this.x1, this.y1);
+  }
+
+  drawResizeRect(x, y) {
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 1;
+    this.ctx.rect(x-3, y-3, 6, 6);
+    this.ctx.fillStyle = 'white';
+    this.ctx.fill();
+    this.ctx.strokeStyle = "#639fff";
+    this.ctx.stroke();
   }
 
   draw() {
@@ -52,6 +67,7 @@ class Line extends CoordinatesInBounderies {
     this.ctx.closePath();
     if (this.selected) {
       this.select();
+      this.drawResizeBorder();
     }
     if (!this.selected && this.highlighted) {
       this.highlight();

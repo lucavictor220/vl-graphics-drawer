@@ -25,14 +25,35 @@ class Rectangle extends CoordinatesInBounderies {
   }
 
   select() {
-    this.ctx.lineWidth = 3;
-    this.ctx.strokeStyle = "blue";
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 2;
+    this.ctx.strokeStyle = "#3681f9";
+    this.ctx.rect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
     this.ctx.stroke();
   }
 
   highlight() {
+    this.ctx.beginPath();
     this.ctx.lineWidth = 2;
     this.ctx.strokeStyle = "#3681f9";
+    this.ctx.rect(this.cx-this.width/2, this.cy-this.height/2, this.width, this.height);
+    this.ctx.stroke();
+  }
+
+  drawResizeBorder() {
+    this.drawResizeRect(this.cx-this.width/2, this.cy-this.height/2);
+    this.drawResizeRect(this.cx-this.width/2+this.width, this.cy-this.height/2);
+    this.drawResizeRect(this.cx-this.width/2+this.width, this.cy-this.height/2+this.height);
+    this.drawResizeRect(this.cx-this.width/2, this.cy-this.height/2+this.height);
+  }
+
+  drawResizeRect(x, y) {
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 1;
+    this.ctx.rect(x-3, y-3, 6, 6);
+    this.ctx.fillStyle = 'white';
+    this.ctx.fill();
+    this.ctx.strokeStyle = "#639fff";
     this.ctx.stroke();
   }
 
@@ -46,6 +67,7 @@ class Rectangle extends CoordinatesInBounderies {
     this.ctx.closePath();
     if (this.selected) {
       this.select();
+      this.drawResizeBorder();
     }
     if (!this.selected && this.highlighted) {
       this.highlight();
