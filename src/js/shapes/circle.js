@@ -36,10 +36,15 @@ class Circle extends CoordinatesInBounderies {
   }
 
   drawResizeBorder() {
-    this.drawResizeRect(this.cx-this.radiusX, this.cy-this.radiusY);
-    this.drawResizeRect(this.cx-this.radiusX+2*this.radiusX, this.cy-this.radiusY);
-    this.drawResizeRect(this.cx-this.radiusX+2*this.radiusX, this.cy-this.radiusY+2*this.radiusY);
-    this.drawResizeRect(this.cx-this.radiusX, this.cy-this.radiusY+2*this.radiusY);
+    const xLeftTop = this.cx - this.radiusX;
+    const yLeftTop = this.cy-this.radiusY;
+    const xDiameter = 2*this.radiusX;
+    const yDiameter = 2*this.radiusY;
+
+    this.drawResizeRect(xLeftTop, yLeftTop);
+    this.drawResizeRect(xLeftTop+xDiameter, yLeftTop);
+    this.drawResizeRect(xLeftTop+xDiameter, yLeftTop+yDiameter);
+    this.drawResizeRect(xLeftTop, yLeftTop+yDiameter);
   }
 
   drawResizeRect(x, y) {

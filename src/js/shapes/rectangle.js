@@ -42,9 +42,9 @@ class Rectangle extends CoordinatesInBounderies {
 
   drawResizeBorder() {
     this.drawResizeRect(this.cx-this.width/2, this.cy-this.height/2);
-    this.drawResizeRect(this.cx-this.width/2+this.width, this.cy-this.height/2);
-    this.drawResizeRect(this.cx-this.width/2+this.width, this.cy-this.height/2+this.height);
-    this.drawResizeRect(this.cx-this.width/2, this.cy-this.height/2+this.height);
+    this.drawResizeRect(this.cx+this.width/2, this.cy-this.height/2);
+    this.drawResizeRect(this.cx+this.width/2, this.cy+this.height/2);
+    this.drawResizeRect(this.cx-this.width/2, this.cy+this.height/2);
   }
 
   drawResizeRect(x, y) {

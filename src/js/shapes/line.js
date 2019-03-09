@@ -37,7 +37,7 @@ class Line extends CoordinatesInBounderies {
     this.ctx.strokeStyle = "#3681f9";
     this.ctx.stroke();
   }
-  
+
   coordinatesIsInShapeBounderies(x, y) {
     return isInsideLine(this.x, this.y, this.x1, this.y1, x, y);
   }
@@ -64,7 +64,6 @@ class Line extends CoordinatesInBounderies {
     this.ctx.lineTo(this.x1, this.y1);
     this.ctx.strokeStyle = "green";
     this.ctx.stroke();
-    this.ctx.closePath();
     if (this.selected) {
       this.select();
       this.drawResizeBorder();

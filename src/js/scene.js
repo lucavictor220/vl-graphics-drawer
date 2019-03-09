@@ -30,6 +30,7 @@ class Scene {
     let shape = this._getShapeOnCoordinates(x, y);
     if (shape) {
       this._selectShape(shape);
+      console.log("select shape:", shape);
     } else {
       this._unselectAll();
     }
@@ -62,8 +63,8 @@ class Scene {
   }
 
   _onMouseDown(e) {
-    let { x, y } = this._getMousePosition(e);
-    let selectedShape = this._getShapeOnCoordinates(x, y);
+    const { x, y } = this._getMousePosition(e);
+    const selectedShape = this._getShapeOnCoordinates(x, y);
     if (selectedShape) {
       this.isDragging = true;
       this.drawing = false;
@@ -77,8 +78,8 @@ class Scene {
   }
 
   _onMouseMove(e) {
-    let { x, y } = this._getMousePosition(e);
-    let selectedShape = this._getShapeOnCoordinates(x, y);
+    const { x, y } = this._getMousePosition(e);
+    const selectedShape = this._getShapeOnCoordinates(x, y);
     if (this.isDragging) {
       this._changeLocation(e);
     } else if (this.drawing && this._currentShape) {
