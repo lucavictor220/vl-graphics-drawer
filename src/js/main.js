@@ -35,18 +35,20 @@ const selectShape = (e) => {
 }
 
 const toggleDropdown = () => {
-  if (dropdownOpened) openDropdown() 
-  else closeDropdown()
+  if (dropdownOpened)
+    closeDropdown()
+  else
+    openDropdown()
 }
 
 const openDropdown = () => {
-  dropdownList.style.display = "none";
-  dropdownOpened = false;
+  dropdownList.style.display = "block";
+  dropdownOpened = true;
 }
 
 const closeDropdown = () => {
-  dropdownList.style.display = "block";
-  dropdownOpened = true;
+  dropdownList.style.display = "none";
+  dropdownOpened = false;
 }
 
 window.addEventListener('resize', resize);

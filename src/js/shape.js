@@ -51,8 +51,13 @@ class Shape extends ShapeObserver {
     return this.shape.selected;
   }
 
+  unselect() {
+    this.shape.selected = false;
+    this.shape.highlighted = false;
+  }
+
   _createShape() {
-    switch(this.name) {
+    switch (this.name) {
       case "rectangle":
         return new Rectangle(this.ctx);
       case "circle":
@@ -63,7 +68,7 @@ class Shape extends ShapeObserver {
         return new Rectangle(this.ctx);
     }
   }
-  
+
   select(model) {
     this.shape.selected = this.id === model.selectedShape.id;
   }

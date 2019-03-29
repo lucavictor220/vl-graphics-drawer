@@ -1,18 +1,18 @@
-class Line extends CoordinatesInBounderies {
+class Line extends IShape {
   constructor(ctx) {
     super();
     this.ctx = ctx;
     this.scaleFactor = 1;
     this.selected = false;
-    this.thickness = 1;
     this.highlighted = false;
+    this.thickness = 1;
   }
 
   updateLocation(x, y) {
     this.cx = x;
     this.cy = y;
-    let deltaX = (this.x1 - this.x)/2;
-    let deltaY = (this.y1 - this.y)/2;
+    let deltaX = (this.x1 - this.x) / 2;
+    let deltaY = (this.y1 - this.y) / 2;
     this.x = this.cx - deltaX;
     this.y = this.cy - deltaY;
     this.x1 = this.cx + deltaX;
@@ -22,8 +22,8 @@ class Line extends CoordinatesInBounderies {
   updateDimentions(x1, y1) {
     this.x1 = x1;
     this.y1 = y1;
-    this.cx = this.x + (this.x1 - this.x)/2;
-    this.cy = this.y + (this.y1 - this.y)/2;
+    this.cx = this.x + (this.x1 - this.x) / 2;
+    this.cy = this.y + (this.y1 - this.y) / 2;
   }
 
   select() {
@@ -50,7 +50,7 @@ class Line extends CoordinatesInBounderies {
   drawResizeRect(x, y) {
     this.ctx.beginPath();
     this.ctx.lineWidth = 1;
-    this.ctx.rect(x-3, y-3, 6, 6);
+    this.ctx.rect(x - 3, y - 3, 6, 6);
     this.ctx.fillStyle = 'white';
     this.ctx.fill();
     this.ctx.strokeStyle = "#639fff";

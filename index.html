@@ -1,43 +1,46 @@
 <html>
-  <head>
-    <title>VL Graphics Drawer</title>
-    <link rel="stylesheet" href="src/css/main.css">
-  </head>
-  <body>
-    <header style="text-align: center;">
-      <h1>Basic Drawer</h1>
-    </header>
-    <div class="container">
-      <div id="vl-drop-down">
-        <div id="header">
-          Shapes
-        </div>
-        <div>
-          <ul id="vl-shape-list">
-            <li class="shape">Rectangle</li>
-            <li class="shape">Circle</li>
-            <li class="shape">Line</li>
-          </ul>
-        </div>
+
+<head>
+  <title>VL Graphics Drawer</title>
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+  <header style="text-align: center;">
+    <h1>Basic Drawer</h1>
+  </header>
+  <div class="container">
+    <div id="vl-drop-down">
+      <div id="header">
+        Shapes
       </div>
-      <div id="scene">
-        <canvas id="myCanvas"></canvas>
+      <div>
+        <ul id="vl-shape-list">
+          <li class="shape">Rectangle</li>
+          <li class="shape">Circle</li>
+          <li class="shape">Line</li>
+        </ul>
       </div>
     </div>
-    <hr>
-    <footer>
-      <button class="button" id="clear">Clear</button>
-    </footer>
-  </body>
-  <script type="application/javascript" src="src/js/interfaces/CoordinatesInBounderies.js"></script>
-  <script type="application/javascript" src="src/js/utils.js"></script>
-  <script type="application/javascript" src="src/js/observers/shape-observer.js"></script>
-  <script type="application/javascript" src="src/js/observers/selection/selection-manager.js"></script>
-  <script type="application/javascript" src="src/js/observers/hover/hover-manager.js"></script>
-  <script type="application/javascript" src="src/js/shapes/rectangle.js"></script>
-  <script type="application/javascript" src="src/js/shapes/circle.js"></script>
-  <script type="application/javascript" src="src/js/shapes/line.js"></script>
-  <script type="application/javascript" src="src/js/shape.js"></script>
-  <script type="application/javascript" src="src/js/scene.js"></script>
-  <script type="application/javascript" src="src/js/main.js"></script>
+    <div id="scene">
+      <canvas id="myCanvas"></canvas>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <button class="button" id="clear">Clear</button>
+  </footer>
+</body>
+<script type="application/javascript" src="src/js/interfaces/IShape.js"></script>
+<script type="application/javascript" src="src/js/utils.js"></script>
+<script type="application/javascript" src="src/js/observers/shape-observer.js"></script>
+<script type="application/javascript" src="src/js/observers/selection/selection-manager.js"></script>
+<script type="application/javascript" src="src/js/observers/hover/hover-manager.js"></script>
+<script type="application/javascript" src="src/js/shapes/rectangle.js"></script>
+<script type="application/javascript" src="src/js/shapes/circle.js"></script>
+<script type="application/javascript" src="src/js/shapes/line.js"></script>
+<script type="application/javascript" src="src/js/shape.js"></script>
+<script type="application/javascript" src="src/js/scene.js"></script>
+<script type="application/javascript" src="src/js/main.js"></script>
+
 </html>
