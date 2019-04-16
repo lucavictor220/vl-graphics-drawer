@@ -1,4 +1,7 @@
 import ShapeObserver from './observers/shape-observer.js'
+import Rectangle from './shapes/rectangle.js'
+import Circle from './shapes/circle.js'
+import Line from './shapes/line.js'
 
 class Shape extends ShapeObserver {
   constructor(ctx, shape) {
@@ -95,3 +98,5 @@ class Shape extends ShapeObserver {
     this.shape.draw();
   }
 }
+
+export default Shape;

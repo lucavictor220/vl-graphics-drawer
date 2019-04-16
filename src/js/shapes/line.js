@@ -1,4 +1,5 @@
 import IShape from '../interfaces/IShape.js';
+import { isInsideLine } from '../utils.js'
 
 class Line extends IShape {
   constructor(ctx) {

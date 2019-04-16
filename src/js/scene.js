@@ -1,5 +1,6 @@
 import SelectionManager from './observers/selection/selection-manager.js'
 import HoverManager from './observers/hover/hover-manager.js'
+import Shape from './shape.js'
 
 class Scene {
   constructor(width, height) {

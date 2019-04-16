@@ -30,12 +30,14 @@ const isInsideLine = (x, y, x1, y1, sx, sy) => {
   }
 
   if (m === Infinity) {
-    return (x+ERROR_TOLERANCE > sx && x-ERROR_TOLERANCE < sx && sortedYCoord[0] <= sy && sy <= sortedYCoord[1]);
+    return (x + ERROR_TOLERANCE > sx && x - ERROR_TOLERANCE < sx && sortedYCoord[0] <= sy && sy <= sortedYCoord[1]);
   } else if (m === 0) {
-    return (y+ERROR_TOLERANCE > sy && y-ERROR_TOLERANCE < sy && sortedXCoord[0] <= sx && sx <= sortedXCoord[1]);
+    return (y + ERROR_TOLERANCE > sy && y - ERROR_TOLERANCE < sy && sortedXCoord[0] <= sx && sx <= sortedXCoord[1]);
   } else {
     isValidCoorinate = (sortedXCoord[0] <= sx && sx <= sortedXCoord[1] && sortedYCoord[0] <= sy && sy <= sortedYCoord[1]);
     if (!isValidCoorinate) return false;
-    return sy-ERROR_TOLERANCE <= m * sx + b && sy+ERROR_TOLERANCE >= m * sx + b;
+    return sy - ERROR_TOLERANCE <= m * sx + b && sy + ERROR_TOLERANCE >= m * sx + b;
   }
 }
+
+export { isInsideLine }
