@@ -28,3 +28,5 @@ class HoverManager {
     }
   }
 }
+
+export default HoverManager;

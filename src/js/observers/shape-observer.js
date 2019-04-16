@@ -1,5 +1,5 @@
 class ShapeObserver {
-  constructor() {}
+  constructor() { }
   select() {
     throw new Error('Select method not implimented.');
   }
@@ -7,3 +7,5 @@ class ShapeObserver {
     throw new Error('Highlight method not implimented.');
   }
 }
+
+export default ShapeObserver;

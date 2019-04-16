@@ -1,3 +1,5 @@
+import IShape from '../interfaces/IShape.js';
+
 class Circle extends IShape {
   constructor(ctx) {
     super();
@@ -77,3 +79,5 @@ class Circle extends IShape {
     }
   }
 }
+
+export default Circle;

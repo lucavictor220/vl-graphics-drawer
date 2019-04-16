@@ -1,3 +1,5 @@
+import IShape from '../interfaces/IShape.js';
+
 class Line extends IShape {
   constructor(ctx) {
     super();
@@ -73,3 +75,5 @@ class Line extends IShape {
     }
   }
 }
+
+export default Line;

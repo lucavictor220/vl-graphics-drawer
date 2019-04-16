@@ -1,0 +1,24 @@
+{
+  "name": "vl-graphics-drawer",
+  "version": "0.0.1",
+  "description": "Simple graphics drawer.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucavictor220/vl-graphics-drawer.git"
+  },
+  "author": "Victor Luca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucavictor220/vl-graphics-drawer/issues"
+  },
+  "homepage": "https://github.com/lucavictor220/vl-graphics-drawer#readme"
+}

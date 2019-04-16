@@ -1,3 +1,5 @@
+import IShape from '../interfaces/IShape.js';
+
 class Rectangle extends IShape {
   constructor(ctx) {
     super();
@@ -74,3 +76,5 @@ class Rectangle extends IShape {
     }
   }
 }
+
+export default Rectangle;

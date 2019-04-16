@@ -1,3 +1,5 @@
+import ShapeObserver from './observers/shape-observer.js'
+
 class Shape extends ShapeObserver {
   constructor(ctx, shape) {
     super();

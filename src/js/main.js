@@ -1,3 +1,5 @@
+import Scene from './scene.js'
+
 let sceneContainer = document.querySelector('#scene');
 const clearButton = document.querySelector('#clear');
 const dropdownHeader = document.querySelector("#header");

@@ -29,3 +29,5 @@ class IShape {
     throw new Error('Not implimented draw method');
   }
 }
+
+export default IShape;

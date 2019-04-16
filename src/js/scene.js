@@ -1,3 +1,6 @@
+import SelectionManager from './observers/selection/selection-manager.js'
+import HoverManager from './observers/hover/hover-manager.js'
+
 class Scene {
   constructor(width, height) {
     this.bindedHtml = {
@@ -176,3 +179,5 @@ class Scene {
     this.ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
   }
 }
+
+export default Scene;
